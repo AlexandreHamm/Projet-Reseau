@@ -1,3 +1,8 @@
+<script setup>
+import ProfileIcon from '@/components/icons/IconProfile.vue'
+import LoginNav from '@/components/LoginNav.vue'
+</script>
+
 <script>
 export default {
   data() {
@@ -28,7 +33,6 @@ export default {
           if (response.status === 200) {
             //   console.log(response)
             const data = await response.json();
-            console.log(data)
             const loggedIn = data.userLoggedIn;
             if (loggedIn === true){
               this.$router.push({ path: '/' })
@@ -42,14 +46,102 @@ export default {
   },
 };
 </script>
+
 <template>
+  <div class="container">
     <form @submit.prevent="submit">
-      <input id="email" v-model="email" type="email" required />
-      <input id="password" v-model="password" type="password" required />
+      <LoginNav/>
+      <div class="wrapper">
+        <div class="icon">
+          <ProfileIcon />
+        </div>
+        <h1>Déjà un compte ?</h1>
 
-      <button type="submit">Se connecter</button>
+        <input id="email" placeholder="Email" v-model="email" type="email" required />
+        <input id="password" placeholder="Mot de passe" v-model="password" type="password" required />
+
+        <button type="submit">Connexion</button>
+      </div>
     </form>
+  </div>
 </template>
-<style scoped>
 
+<style scoped>
+@import '@/styles/base.css';
+
+.container{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+form{
+  min-width: 40rem;
+  display: flex;
+  flex-direction: column;
+}
+.wrapper{
+  width: 100%;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.icon{
+  padding: 1.5rem;
+  /* border-radius: 50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1{
+  padding-block: 1.5rem 2rem;
+  font-weight: 500;
+}
+input, button{
+  width: 95%;
+  min-height: 3rem;
+  margin: 1rem;
+  padding: 1rem;
+  border: none;
+  outline: none;
+}
+button{
+  /* min-width: 10rem; */
+  cursor: pointer;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  .wrapper{
+    background: #EEE;
+  }
+  .icon{
+    background: #FFF;
+  }
+  input{
+    background: #FFF;
+  }
+  button{
+    color: var(--white-soft);
+    background: #ff0040;
+  }
+}
+@media (prefers-color-scheme: light) {
+  .wrapper{
+    background: var(--black-soft);
+  }
+  .icon{
+    background: #FFF;
+  }
+  input{
+    background: #FFF;
+  }
+  button{
+    color: var(--white-soft);
+    background: #ff0040;
+  }
+}
 </style>

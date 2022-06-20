@@ -1,0 +1,37 @@
+@import '@/styles/_var.css';
+
+:root{
+  /* RELATIVE FONTSIZE */
+  font-size: 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  body{
+    background: var(--white-soft);
+    color: var(--black-soft);
+  }
+}
+@media (prefers-color-scheme: light) {
+  body{
+    background: var(--black-soft);
+    color: var(--white-soft);
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  overflow: hidden;
+  line-height: 1.6;
+  font-family: var(--vue-font);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

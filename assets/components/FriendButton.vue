@@ -37,9 +37,12 @@ export default {
   },
 }
 </script>
+
 <template>
     
 </template>
+
 <style scoped>
+@import '@/styles/base.css';
 
 </style>

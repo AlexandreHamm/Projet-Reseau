@@ -53,8 +53,8 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
         // Redirection homepage a décommenter pour un front Symfony
         //return new RedirectResponse($this->urlGenerator->generate('homepage'));
 
-        $response = new JsonResponse(['Auth' => 'OK']);
-        return $response;
+        // $response = new JsonResponse(['Auth' => 'OK']);
+        // return $response;
     }
 
     protected function getLoginUrl(Request $request): string

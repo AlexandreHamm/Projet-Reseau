@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
 use App\Security\EmailVerifier;
 use App\Security\LoginAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,12 +34,14 @@ class RegistrationController extends AbstractController
         
         $password = $content['password'];
         $email = $content['email'];
+        $username = $content['username'];
 
+        $user->setUsername($username);
         $user->setEmail($email);
         
         // encode the plain password
         $user->setPassword(
-        $userPasswordHasher->hashPassword(
+            $userPasswordHasher->hashPassword(
                 $user, $password
             )
         );
@@ -51,7 +52,7 @@ class RegistrationController extends AbstractController
         // generate a signed url and email it to the user
         $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
             (new TemplatedEmail())
-                ->from(new Address('riders@enovation.fr', 'Riders Challenge'))
+                ->from(new Address('no_reply@riderschallenge.fr', 'Riders Challenge'))
                 ->to($user->getEmail())
                 ->subject('Please Confirm your Email')
                 ->htmlTemplate('registration/confirmation_email.html.twig')

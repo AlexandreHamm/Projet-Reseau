@@ -1,3 +1,10 @@
-body {
-    background-color: lightgray;
-}
+@media (prefers-color-scheme: dark) {
+    body{
+      background: #181818;
+    }
+  }
+  @media (prefers-color-scheme: light) {
+    body{
+      background: #F8F8F8;
+    }
+  }
