@@ -1,5 +1,6 @@
 <script setup>
 import LoginIcon from '@/components/icons/IconLogin.vue'
+import LogoutBtn from '@/components/LogoutButton.vue'
 </script>
 
 <script>
@@ -10,17 +11,17 @@ export default {
     }
   },
   beforeCreate: async function(){
-    await fetch("/api/verif")
-    .then(async (response) => {
-      if (response.status === 200) {
-          // console.log(response)
-        const data = await response.json();
-        this.loggedIn = data.userLoggedIn;
-      }
-    })
-    .catch((error) => {
-      console.error("Invalid user:", error);
-    });
+      await fetch("/api/verif")
+      .then(async (response) => {
+        if (response.status === 200) {
+          //   console.log(response)
+          const data = await response.json();
+          this.loggedIn = data.userLoggedIn;
+        }
+      })
+      .catch((error) => {
+        console.error("Invalid user:", error);
+      });
   }
 }
 </script>
@@ -33,9 +34,7 @@ export default {
       <RouterLink to="/login" class="login" v-if="loggedIn == false">
         <LoginIcon/>
       </RouterLink>
-      <a href="/logout" class="login" v-if="loggedIn == true">
-        <LoginIcon/>
-      </a>
+      <LogoutBtn v-if="loggedIn == true"/>
     </nav>
 </template>
 

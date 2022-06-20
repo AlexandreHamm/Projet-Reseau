@@ -28,6 +28,7 @@ export default {
         cache: "default",
         body: JSON.stringify(form),
       };
+      console.log(myData)
       await fetch("/api/login", myData)
         .then(async (response) => {
           if (response.status === 200) {

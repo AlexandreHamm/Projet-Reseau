@@ -20,13 +20,8 @@ class LoginController extends AbstractController
         }
 
         $user = $this->getUser();
-        $id = $user->getId();
-
-        setcookie('logged', true, time()+604800,httponly:true);
-        setcookie('user', $id, time()+604800,httponly:true);
-
+    
         return $this->json([
-             'user' => $user,
              'userLoggedIn'  => true
         ]);
     }
